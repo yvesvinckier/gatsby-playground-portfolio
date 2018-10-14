@@ -4,6 +4,11 @@ import ScrollMagic from "../components/ScrollMagic"; // my own wrapper for scrol
 import imgPen from '../assets/images/img_pen-landscape.png'
 
 class Pen extends Component {
+    constructor(props) {
+        super(props);
+        // part1 trigger
+        this.part1Trigger = null;
+    }
     componentDidMount() {
         // move the pen body up to connect with the first part
         TweenMax.set('.part3', { y: -572 })
@@ -19,7 +24,7 @@ class Pen extends Component {
 
         // Create a Scene 1 - move pen body back to start - HOW?
         const bodyToStartScene = new ScrollMagic.Scene({
-            triggerElement: '.part1',
+            triggerElement: this.part1Trigger,
             triggerHook: 1,
             offset: 287,
             duration: 572
@@ -64,7 +69,9 @@ class Pen extends Component {
                 vehicula.{' '}
                             </p>
                             <ol className="parts">
-                                <li className="part1">
+                                <li
+                                    className="part1"
+                                    ref={li => this.part1Trigger = li}>
                                     <h2>Heading 1</h2>
                                     <p>
                                         Vivamus hendrerit in dui arcu sed erat molestie vehicula.
