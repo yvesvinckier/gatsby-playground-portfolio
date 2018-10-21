@@ -3,8 +3,15 @@
 
 //Generic
 @import 'generic/_reset';
+@import 'generic/_mixins';
+
+//Base
+@import 'base/_main';
+@import 'base/links';
 
 //Objects
-@import 'objects/_title';
-@import 'objects/_pen';
-@import 'objects/controll-logo-tween';
+// @import 'objects/_title';
+// @import 'objects/_pen';
+// @import 'objects/controll-logo-tween';
+@import 'objects/footer';
+@import 'objects/home';
