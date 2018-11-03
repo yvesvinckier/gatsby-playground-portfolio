@@ -1,0 +1,19 @@
+header {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-areas:
+    'title'
+    'menu'
+    'content-main'
+    'content-photography'
+    'footer';
+  @include bp(large) {
+    grid-template-columns: 10vw 60vw 30vw;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      'title title menu'
+      '... content content'
+      '... footer footer';
+  }
+}

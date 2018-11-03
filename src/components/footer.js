@@ -5,7 +5,7 @@ class Footer extends React.Component {
     render() {
         return (
             <footer className="footer">
-                <div className="footer__left">©Raison De Plus <br />2018</div>
+                <div className="footer__left">©Andy <br />2018</div>
                 <div className="footer__right">
                     <div className="footer__column">
                         <Link to="/">Stories &amp; Awards</Link>
@@ -20,8 +20,8 @@ class Footer extends React.Component {
                     <div className="footer__column">
                         <span className="address">
                             Ulitsa Lva Tolstogo 46<br />
-                            Moscow, Russia<br />
-                            +7 495 119-27-77
+                            Lille, France<br />
+                            +33 6 42 41 22 56
 						    </span>
                     </div>
                 </div>

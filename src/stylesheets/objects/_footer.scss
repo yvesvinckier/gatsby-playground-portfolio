@@ -3,7 +3,7 @@
   @include bp(large) {
     display: grid;
     align-items: center;
-    grid-template-columns: 20vw 70vw;
+    grid-template-columns: 20vw 80vw;
     margin-top: 20vh;
   }
 }
@@ -12,6 +12,7 @@
   color: $color-alt;
   @include bp(large) {
     padding: 0;
+    margin-left: 30%;
   }
 }
 .footer__right {

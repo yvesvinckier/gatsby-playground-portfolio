@@ -1,12 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
 import Archive from './archive'
 import Header from './header'
 import Footer from './footer'
 import '../stylesheets/style.scss'
 // import './layout.css'
+
+const MainLayout = styled.main`
+  max-width: 90%;
+  padding-top: 40px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-gap: 40px;
+`
+
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -16,6 +28,15 @@ const Layout = ({ children }) => (
           siteMetadata {
             title
             description
+          }
+        }
+        file(relativePath: {
+          regex: "/dillon-mangum-383677-unsplash/"
+        }) {
+          childImageSharp {
+            fluid(maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_tracedSVG
+            }
           }
         }
       }
@@ -32,14 +53,18 @@ const Layout = ({ children }) => (
             { name: 'keywords', content: 'sample, something' },
           ]}
         >
-          <html lang="en" />
+          <html lang="fr" />
         </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <main>
-          {children}
-          <Footer />
-        </main>
-        <Archive />
+        <Header />
+        <Img fluid={data.file.childImageSharp.fluid} />
+        <MainLayout>
+          <div>
+            {children}
+          </div>
+          <Archive />
+        </MainLayout>
+        <Footer />
+
       </>
     )}
   />
