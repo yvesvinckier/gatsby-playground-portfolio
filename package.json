@@ -23,6 +23,7 @@
     "react-helmet": "^5.2.0",
     "react-scroll-to-element": "^0.2.0",
     "react-scrollspy": "^3.3.5",
+    "react-spring": "^6.1.6",
     "react-waypoint": "^8.0.3",
     "scrollmagic": "^2.0.6",
     "styled-components": "^4.0.3"

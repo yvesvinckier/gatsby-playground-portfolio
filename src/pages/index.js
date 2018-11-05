@@ -1,25 +1,12 @@
-/* eslint-disable */
 import React from 'react'
-import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
 import Listing from '../components/listing'
 
-
-class IndexPage extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-
-      <Layout>
-        <Listing />
-      </Layout>
-    )
-  }
-
-}
-
+const IndexPage = ({ location }) => (
+  <Layout location={location}>
+    <Listing />
+  </Layout>
+)
 
 export default IndexPage
