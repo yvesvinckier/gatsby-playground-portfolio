@@ -1,9 +1,18 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     title: `A new Portfolio`,
     description: `A new project!`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
@@ -37,12 +46,5 @@ module.exports = {
       }
     },
     `gatsby-transformer-remark`,
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-      },
-    },
   ],
 }

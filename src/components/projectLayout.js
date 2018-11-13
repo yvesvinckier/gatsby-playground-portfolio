@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import Layout from './layout'
+import Img from 'gatsby-image'
 
 // Static Query
 // Used anywhere, doesn't accept variable, can't use context
@@ -10,14 +11,19 @@ import Layout from './layout'
 
 export default class projectLayout extends Component {
   render() {
-    const { markdownRemark } = this.props.data
+    const {
+      content,
+      title,
+      cover
+    } = this.props.data.contentfulGallery
     const { location } = this.props
     return (
       <Layout location={location}>
-        <h1>{markdownRemark.frontmatter.title}</h1>
+        <h1>{title}</h1>
+        <Img sizes={cover.sizes} alt={cover.title} />
         <div
           dangerouslySetInnerHTML={{
-            __html: markdownRemark.html,
+            __html: content.childMarkdownRemark.html,
           }}
         />
       </Layout>
@@ -27,12 +33,19 @@ export default class projectLayout extends Component {
 
 export const query = graphql`
   query ProjectQuery($slug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-      html
-      frontmatter {
+    contentfulGallery(slug: { eq: $slug }) {
+      title
+      slug
+      content{
+        childMarkdownRemark {
+          html
+        }
+      }
+      cover {
         title
-        date
-        slug
+        sizes(maxWidth: 1800) {
+          ...GatsbyContentfulSizes_noBase64
+        }
       }
     }
   }

@@ -6,23 +6,21 @@ exports.createPages = ({ graphql, actions }) => {
     return new Promise((resolve, reject) => {
         graphql(`
       {
-        allMarkdownRemark {
+        allContentfulGallery {
           edges {
             node {
-              frontmatter {
                 slug
-              }
             }
           }
         }
       }    
     `).then(results => {
-                results.data.allMarkdownRemark.edges.forEach(({ node }) => {
+                results.data.allContentfulGallery.edges.forEach(({ node }) => {
                     createPage({
-                        path: `/projects${node.frontmatter.slug}`,
+                        path: node.slug,
                         component: path.resolve('./src/components/projectLayout.js'),
                         context: {
-                            slug: node.frontmatter.slug,
+                            slug: node.slug,
                         }
                     });
                 })

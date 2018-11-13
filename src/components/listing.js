@@ -28,40 +28,47 @@ const Project = styled.article`
 
 const LISTING_QUERY = graphql`
   query ProjectsListing {
-    allMarkdownRemark(limit: 10, sort: {
-    order: DESC,
-    fields: [frontmatter___date]
-  }) {
-      edges {
-        node {
-          excerpt
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-            slug
+    allContentfulGallery (limit :10, sort: {
+          order: DESC,
+          fields: [createdAt]
+        }){
+          edges {
+            node {
+              slug
+              id
+              content {
+                childMarkdownRemark {
+                  html
+                }
+              }
+              cover {
+                title
+                fluid{
+                  sizes
+                }
+                
+              }
+            }
           }
         }
-      }
-    }
   }
 `
 
 const Listing = () => (
-    <StaticQuery
-        query={LISTING_QUERY}
-        render={({ allMarkdownRemark }) => (
-            allMarkdownRemark.edges.map(({ node }) => (
-                <Project key={node.frontmatter.slug}>
-                    <Link to={`/projects${node.frontmatter.slug}`}>
-                        <h2>{node.frontmatter.title}</h2>
-                    </Link>
-                    <p>{node.frontmatter.date}</p>
-                    <p>{node.excerpt}</p>
-                    <Link className="read-more" to={`/projects${node.frontmatter.slug}`}>Read More</Link>
-                </Project>
-            ))
-        )}
-    />
+  <StaticQuery
+    query={LISTING_QUERY}
+    render={({ allContentfulGallery }) => (
+      allContentfulGallery.edges.map(({ node }) => (
+        <Project key={node.slug}>
+          <Link to={node.slug}>
+            <h2>{node.title}</h2>
+          </Link>
+          <p>{node.content}</p>
+          <Link className="read-more" to={node.slug}>Read More</Link>
+        </Project>
+      ))
+    )}
+  />
 
 )
 
