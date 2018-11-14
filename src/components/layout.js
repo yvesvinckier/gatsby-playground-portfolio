@@ -5,7 +5,6 @@ import { Spring } from 'react-spring'
 import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
-import Archive from './archive'
 import Header from './header'
 import Footer from './footer'
 import '../stylesheets/style.scss'
@@ -69,7 +68,6 @@ const Layout = ({ children, location }) => (
         )} */}
         <MainLayout>
           <div>{children}</div>
-          <Archive />
         </MainLayout>
         <Footer />
       </>

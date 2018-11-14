@@ -31,26 +31,25 @@ const LISTING_QUERY = graphql`
     allContentfulGallery (limit :10, sort: {
           order: DESC,
           fields: [createdAt]
-        }){
-          edges {
-            node {
-              slug
-              id
-              content {
-                childMarkdownRemark {
-                  html
-                }
-              }
-              cover {
-                title
-                fluid{
-                  sizes
-                }
-                
-              }
+    }){
+      edges {
+        node {
+          slug
+          id
+          content {
+            childMarkdownRemark {
+              html
+            }
+          }
+          cover {
+            title
+              fluid {
+              sizes
             }
           }
         }
+      }
+    }
   }
 `
 
@@ -59,7 +58,7 @@ const Listing = () => (
     query={LISTING_QUERY}
     render={({ allContentfulGallery }) => (
       allContentfulGallery.edges.map(({ node }) => (
-        <Project key={node.slug}>
+        <Project key={node.id}>
           <Link to={node.slug}>
             <h2>{node.title}</h2>
           </Link>
