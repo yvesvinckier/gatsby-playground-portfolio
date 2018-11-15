@@ -1,17 +1,28 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Link from 'gatsby-link'
-import Img from 'gatsby-image'
+// import Link from 'gatsby-link'
+// import Img from 'gatsby-image'
 import Slider from '../components/Slider'
 
 import Layout from '../components/layout'
 
 const IndexPage = ({ location, data }) => {
   const posts = data.allContentfulGallery.edges
+  const slider = React.createRef()
   return (
     <Layout location={location}>
-      <Slider posts={posts} />
-      <ul className="featured__list">
+      <Slider
+        ref={slider}
+        // ref={(component) => { this.slider = component }}
+        posts={posts}
+        handleProjectLinkClick={(projectCoverCallback) => {
+          this.projectLinkClicked = true
+          // Pass a callback to the page so that we can pass back the leave animation timeline
+          // to the SliderCover component when transitioning the page out.
+          this.projectCoverCallback = projectCoverCallback
+        }}
+      />
+      {/* <ul className="featured__list">
         {posts.map(({ node: post }) => (
           <li key={post.id}>
             <Link to={post.slug + '/'}>
@@ -25,8 +36,8 @@ const IndexPage = ({ location, data }) => {
             </Link>
           </li>
         ))}
-      </ul>
-      <ul className="featured__list">
+      </ul> */}
+      {/* <ul className="featured__list">
         <li key={posts[0].node.id}>
           <Link to={posts[0].node.slug + '/'}>
             <Img
@@ -38,7 +49,7 @@ const IndexPage = ({ location, data }) => {
             <h3>View Gallery</h3>
           </Link>
         </li>
-      </ul>
+      </ul> */}
     </Layout>
   )
 }

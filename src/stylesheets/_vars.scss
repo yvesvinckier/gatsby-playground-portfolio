@@ -21,3 +21,15 @@ $sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'lucida grande',
 
 //Max Width
 $max: 1200px;
+
+// portfolio amine variable
+$content-padding: 50px;
+$header-top-margin: 3em;
+$header-height: 45px;
+$header-padding: calc(#{$header-top-margin} + #{$header-height});
+$project-cover-width: 724px;
+$project-cover-height: 320px;
+$project-cover-perimeter: ($project-cover-width * 2) +
+  ($project-cover-height * 2);
+$slider-breadcrumb-height: 145px;
+$slider-breadcrumb-height-small: 122px;
