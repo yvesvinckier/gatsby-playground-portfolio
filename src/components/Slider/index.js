@@ -5,16 +5,15 @@ import throttle from 'lodash/throttle'
 import SliderCover from '../SliderCover'
 
 class Slider extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
-      currentIndex: 2
+      currentIndex: 0,
     }
   }
 
   static propTypes = {
-    posts: PropTypes.array.isRequired
+    posts: PropTypes.array.isRequired,
   }
 
   // getInitialState() {
@@ -25,11 +24,10 @@ class Slider extends React.Component {
 
   componentDidMount() {
     this.keyDownListener = e => this.handleKeyDown(e)
-    this.mouseWheelListener = throttle(
-      e => this.handleMouseWheel(e),
-      2000,
-      { leading: true, trailing: false }
-    )
+    this.mouseWheelListener = throttle(e => this.handleMouseWheel(e), 2000, {
+      leading: true,
+      trailing: false,
+    })
     window.addEventListener('keydown', this.keyDownListener)
     window.addEventListener('wheel', this.mouseWheelListener, { passive: true })
   }
@@ -67,20 +65,24 @@ class Slider extends React.Component {
     this.handleProjectSwitch(newIndex)
   }
 
-  handleProjectSwitch = debounce((newIndex) => {
-    if (!this.animatingOut) {
-      const projectsDataCount = this.props.posts.length - 1
-      let index = newIndex
+  handleProjectSwitch = debounce(
+    newIndex => {
+      if (!this.animatingOut) {
+        const projectsDataCount = this.props.posts.length - 1
+        let index = newIndex
 
-      if (index > projectsDataCount) {
-        index = 0
-      } else if (index < 0) {
-        index = projectsDataCount
+        if (index > projectsDataCount) {
+          index = 0
+        } else if (index < 0) {
+          index = projectsDataCount
+        }
+
+        this.setState({ currentIndex: index })
       }
-
-      this.setState({ currentIndex: index })
-    }
-  }, 350, { leading: true, trailing: false })
+    },
+    350,
+    { leading: true, trailing: false }
+  )
 
   render() {
     const { currentIndex } = this.state
@@ -88,10 +90,7 @@ class Slider extends React.Component {
 
     return (
       <section className="">
-        <SliderCover
-          project={posts[currentIndex]}
-          {...this.props}
-        />
+        <SliderCover project={posts[currentIndex]} {...this.props} />
       </section>
     )
   }
