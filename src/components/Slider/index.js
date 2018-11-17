@@ -16,12 +16,6 @@ class Slider extends Component {
     posts: PropTypes.array.isRequired,
   }
 
-  // getInitialState() {
-  //   return {
-  //     currentIndex: 0
-  //   }
-  // }
-
   componentDidMount() {
     this.keyDownListener = e => this.handleKeyDown(e)
     this.mouseWheelListener = throttle(e => this.handleMouseWheel(e), 2000, {

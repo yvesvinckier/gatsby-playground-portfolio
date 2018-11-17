@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { prefixLink } from 'gatsby-helpers'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import { TimelineLite } from 'gsap/all'
