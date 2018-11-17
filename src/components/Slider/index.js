@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import debounce from 'lodash/debounce'
 import throttle from 'lodash/throttle'
 import SliderCover from '../SliderCover'
 
-class Slider extends React.Component {
+class Slider extends Component {
   constructor(props) {
     super(props)
     this.state = {
